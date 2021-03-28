@@ -8,7 +8,7 @@
 
     <h2 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Find Available Flights</h2>
 
-    <form action="fetchFlightByDay.php" method="post" class="bg-gray-300 m-16 mt-4 py-4 pl-20 rounded shadow-lg">
+    <form action="fetchFlightByDay.php" method="post" class="bg-gray-300 m-16 mt-4 py-5 pl-12 rounded shadow-lg">
 
         <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airline: </p>
         <?php

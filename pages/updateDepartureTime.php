@@ -6,8 +6,8 @@
 
 <div>
     <h1 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Update Flight Departure Time</h1>
-    <form action="updateNewTime.php" method="post"  class="bg-gray-300 m-16 mt-4 py-4 pl-20 rounded shadow-lg">
-        <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airline:</p>
+    <form action="updateNewTime.php" method="post"  class="bg-gray-300 m-16 mt-4 py-5 pl-12 rounded shadow-lg">
+        <p class="font-bold pb-2 pt-3 text-xl">Choose the preferred airline:</p>
         <? while ($row = $airlines->fetch()) { ?>
             <input class="airline-input pr-2 ml-4" type="radio" name="airlineCode" value="<?= $row['Code'] ?>" required>
             <? echo $row["Code"]." - ".$row["Name"]; ?>
@@ -20,11 +20,10 @@
 
             <p class="font-bold pt-6 pb-2 text-xl">Select the new departure time</p>
             <input class="p-4 pt-6 rounded bg-gray-100 shadow ml-4" type="time" name="scheduledDepartureTime" min="00:00" max="24:00" value="00:00" required>
-
             <br>
 
-            <div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" value="Change departure time" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow"></div>
         </div>
+        <div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" value="Change departure time" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow"></div>
     </form>
 </div>
 

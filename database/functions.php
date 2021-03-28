@@ -82,7 +82,11 @@
         return $airlines;
     }
 
-
+    /**
+     * This returns all data associated with Aiports
+     * 
+     * @return airports - List of airports
+     */
     function getAirports() {
         global $connection;
         $query = "SELECT * FROM Airport";
@@ -91,6 +95,11 @@
         return $airports;
     }
 
+     /**
+     * This returns all data associated with Airplanes
+     * 
+     * @return airplanes - List of airplanes
+     */
     function getAirplanes() {
         global $connection;
         $query = "SELECT * FROM Airplane";
@@ -98,6 +107,11 @@
         return $airplanes;
     }
 
+    /**
+     * This returns all data associated with Flights
+     * 
+     * @return flights - List of flights
+     */
     function getAllFlights() {
         global $connection;
         $query = " SELECT * FROM Flight
@@ -107,6 +121,17 @@
         return $flights;
     }
 
+    /**
+     * This inserts a new flight into the Flights table
+     * 
+     * @param flightNumber - new flight number
+     * @param airlineCode - selected airline code
+     * @param assignedAirplaneID - the selected airplane for the flight
+     * @param departingAirportCode - departing location for flight
+     * @param arrivalAirportCode - arrival location for flight
+     * 
+     * @return flights - List of flights
+     */
     function addFlight($flightNumber, $airlineCode, $assignedAirplaneID, $departingAirportCode, $arrivalAirportCode) {
         global $connection;
         $insertFlight = "
@@ -132,6 +157,13 @@
         return $newFlight;
     }
 
+    /**
+     * This inserts a new flight into the DaysOfWeekFightOffered table
+     * 
+     * @param flightNumber - new flight number
+     * @param airlineCode - selected airline code
+     * @param daysOffered - days the flight will be offered
+     */
     function addFlightDay($flightNumber, $airlineCode, $daysOffered) {
         global $connection;
 
@@ -154,6 +186,15 @@
         }
     }
 
+    /**
+     * Updates the departure time of a flight in Flight table
+     * 
+     * @param flightNumber - selected flight number
+     * @param airlineCode - selected airline code
+     * @param scheduledDepartureTime - new departure time for flight
+     * 
+     * @return newTime - new flight departure time
+     */
     function updateDepartureTime($flightNumber, $airlineCode, $scheduledDepartureTime) {
         global $connection;
 
@@ -169,6 +210,13 @@
         return $newTime;
     }
 
+    /**
+     * Returns the airplane, airplaneType and flight information for flights on a specific weekday
+     * 
+     * @param day - day of week to search
+     * 
+     * @return planes - plane information for that day
+     */
     function getAirplanesForFlight($day) {
         global $connection;
         foreach ($day as $key=>$val) {
@@ -192,18 +240,5 @@
 
         $planes = $connection->query($query);
         return $planes;
-    }
-
-    function calculateAvgSeats($flights) {
-        $count = 0;
-        $totalSeats = 0;
-        while ($row = $flights->fetch()) {
-            $count = $count + 1;
-            $totalSeats = $totalSeats + $row['MaxSeats'];
-        }
-
-        $avgSeats = $totalSeats / $count;
-
-        return $avgSeats;
     }
 ?>

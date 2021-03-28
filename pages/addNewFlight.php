@@ -10,12 +10,13 @@
 
     <h2 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Create New Flight</h2>
    
-    <form action="createFlight.php" method="post" class="bg-gray-300 m-16 mt-4 py-4 pl-20 rounded shadow-lg">
+    <form action="createFlight.php" method="post" class="bg-gray-300 m-16 mt-4 py-5 pl-12 rounded shadow-lg">
 
         <p class="font-bold pt-3 pb-2 text-xl">Enter a Flight Number</p>
-        <input class="p-2 rounded bg-gray-100 shadow ml-4" required type="text" placeholder="Flight Number" name="flightNumber">
+        <input class="p-2 rounded bg-gray-100 shadow ml-4" required type="text" maxlength="3" placeholder="Flight Number" name="flightNumber">
 
        <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airline:</p>
+       
         <? while ($row = $airlines->fetch()) { ?>
            <input class="airline-input ml-4" required type="radio" name="airlineCode" value="<?= $row['Code'] ?>">
             <? echo $row["Code"]." - ".$row["Name"]; ?>
@@ -50,20 +51,13 @@
             <?
             }
             ?>
-            <div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow ml-6" value="Create Flight"></div>
         </div>        
+        <div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow ml-6" value="Create Flight"></div>
     </form>
 
+<? $connection = NULL; ?>
 
-
-
-<?php
-$connection = NULL;
-?>
-
-<?php
-    require("../includes/footer.php");
-?>
+<? require("../includes/footer.php"); ?>
 
 <script>
     const airlineSelectors = document.querySelectorAll('.airline-input');
@@ -95,6 +89,7 @@ $connection = NULL;
 
                     const spanElement = document.createElement("span")
                     spanElement.innerHTML = flights.AirplaneTypeName;
+                    spanElement.style.marginLeft = "6px";
                     airplaneList.appendChild(spanElement);
 
                     const brElement = document.createElement("br");

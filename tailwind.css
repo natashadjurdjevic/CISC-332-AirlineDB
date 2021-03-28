@@ -51,6 +51,10 @@ body {
   color: #064E3B;
 }
 
+td {
+  color: #1F2937;
+}
+
 /**
 Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
 */
