@@ -8,54 +8,52 @@
     $days = getDaysOffered();
     ?>
 
-    <h2>Create New Flight</h2>
+    <h2 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Create New Flight</h2>
    
-    <form action="createFlight.php" method="post">
+    <form action="createFlight.php" method="post" class="bg-gray-300 m-16 mt-4 py-4 pl-20 rounded shadow-lg">
 
-        <p>Enter a Flight Number</p>
-        <input required type="text" name="flightNumber">
+        <p class="font-bold pt-3 pb-2 text-xl">Enter a Flight Number</p>
+        <input class="p-2 rounded bg-gray-100 shadow ml-4" required type="text" placeholder="Flight Number" name="flightNumber">
 
-       <p>Choose the preferred airline:</p>
+       <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airline:</p>
         <? while ($row = $airlines->fetch()) { ?>
-           <input class="airline-input" required type="radio" name="airlineCode" value="<?= $row['Code'] ?>">
+           <input class="airline-input ml-4" required type="radio" name="airlineCode" value="<?= $row['Code'] ?>">
             <? echo $row["Code"]." - ".$row["Name"]; ?>
             <br>
         <? } ?>
 
         <div class="airplane-list-section" style="display: none;">
-            <p>Choose the preferred airplane :</p>
+            <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airplane :</p>
             <div class="airplane-list"></div>
 
-            <p>Select Departure Airport:</p>
+            <p class="font-bold pt-3 pb-2 text-xl">Select Departure Airport:</p>
             <? while ($row = $departureAirports->fetch()) { ?>
-            <input required type="radio" name="departureCode" value="<?= $row['AirportCode'] ?>">
+            <input class="ml-4" required type="radio" name="departureCode" value="<?= $row['AirportCode'] ?>">
                 <? echo $row["AirportCode"]." - ".$row["Name"]; ?>
                 <br>
             <? } ?>
 
-            <p>Select Arrival Airport:</p>
+            <p class="font-bold pt-3 pb-2 text-xl">Select Arrival Airport:</p>
             <? while ($row = $arrivalAirports->fetch()) { ?>
-            <input required type="radio" name="arrivalCode" value="<?= $row['AirportCode'] ?>">
+            <input class="ml-4" required type="radio" name="arrivalCode" value="<?= $row['AirportCode'] ?>">
                 <? echo $row["AirportCode"]." - ".$row["Name"]; ?>
                 <br>
             <? } ?>
 
-            <p>Select an available day: </p>
+            <p class="font-bold pt-3 pb-2 text-xl">Select an available day: </p>
             <?
             while ($row = $days->fetch()) {
             ?>
-                <input type="checkbox" name="day[]" value="<?= $row['Day']?>">
+                <input class="ml-4" type="checkbox" name="day[]" value="<?= $row['Day']?>">
                 <? echo $row["Day"]; ?> 
                 <br>
             <?
             }
             ?>
-        </div>
-
-
-        
-        <input type="submit" id="submit_button" value="Create Flight">
+            <div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow ml-6" value="Create Flight"></div>
+        </div>        
     </form>
+
 
 
 
@@ -63,8 +61,9 @@
 $connection = NULL;
 ?>
 
-</body>
-</html>
+<?php
+    require("../includes/footer.php");
+?>
 
 <script>
     const airlineSelectors = document.querySelectorAll('.airline-input');
@@ -91,6 +90,7 @@ $connection = NULL;
                     inputElement.type = "radio";
                     inputElement.name = "airplaneID";
                     inputElement.value = flights.AssignedAirplaneID;
+                    inputElement.style.marginLeft = "16px";
                     airplaneList.appendChild(inputElement);
 
                     const spanElement = document.createElement("span")

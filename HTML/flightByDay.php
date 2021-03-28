@@ -6,33 +6,33 @@
         $airlines = getAirlines();
     ?>
 
-    <h2>Find Available Flights</h2>
+    <h2 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Find Available Flights</h2>
 
-    <form action="fetchFlightByDay.php" method="post">
+    <form action="fetchFlightByDay.php" method="post" class="bg-gray-300 m-16 mt-4 py-4 pl-20 rounded shadow-lg">
 
-        <p>Choose the preferred airline: </p>
+        <p class="font-bold pt-3 pb-2 text-xl">Choose the preferred airline: </p>
         <?php
         while ($row = $airlines->fetch()) {
         ?>
-            <input type="radio" name="airlineCode" value="<?= $row['Code'] ?>">
+            <input class="ml-4" type="radio" name="airlineCode" value="<?= $row['Code'] ?>">
             <? echo $row["Code"]." - ".$row["Name"]?>
            <br>
         <?
         }
         ?>
 
-        <p>Select an available day: </p>
+        <p class="font-bold pt-3 pb-2 text-xl">Select an available day: </p>
         <?
         while ($row = $days->fetch()) {
         ?>
-           <input type="radio" name="day[]" value="<?= $row['Day']?>">
+           <input class="ml-4" type="radio" name="day[]" value="<?= $row['Day']?>">
             <? echo $row["Day"]; ?> 
             <br>
         <?
         }
         ?>
 
-        <input type="submit" id="submit_button" value="Get Flights">
+<div class="pt-6 pb-2 float-right"><input type="submit" id="submit_button" class="bg-yellow-400 hover:bg-yellow-300 p-4 rounded shadow" value="Get Flights"></div>
     </form>
 
 <?php

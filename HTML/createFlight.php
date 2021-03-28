@@ -1,9 +1,6 @@
 <?php  
     require("../includes/header.php");
-    require("../database/functions.php");
-
-    var_dump($_POST["airplaneID"]);
-    
+    require("../database/functions.php");    
     startTransaction();
     $newFlight = addFlight($_POST["flightNumber"], $_POST["airlineCode"], $_POST["airplaneID"], $_POST["departureCode"], $_POST["arrivalCode"]);
     $newFlightDay = addFlightDay($_POST["flightNumber"], $_POST["airlineCode"], $_POST["day"]);
@@ -12,34 +9,34 @@
     $flights = getAllFlights();
 ?>
 
-<table border='1'>
-    <tr>
-        <th>Flight Number</th>
-        <th>Departing Airport Code</th>
-        <th>Arrival Airport Code</th>
-        <th>Flight Number</th>
-        <th>Departing Airport Code</th>
-        <th>Arrival Airport Code</th>
-        <th>Flight Number</th>
-        <th>Departing Airport Code</th>
-        <th>Arrival Airport Code</th>
-    </tr>
+<div class="bg-gray-300 m-16 py-4 px-12 content-center rounded">
+    <p class="text-center text-xl pb-4 font-bold text-green-900" >The flight was succesfully created. </p>   
 
-    <?
-    while ($row = $flights->fetch()) {
-    ?>
+    <table class="content-center border-separate border border-green-800 table-auto m-auto">
         <tr>
-            <td><?= $row["FlightNumber"] ?></td>        
-            <td><?= $row['AirlineCode'] ?></td>               
-            <td><?= $row['AssignedAirplaneID'] ?></td>
-            <td><?= $row["DepartingAirportCode"] ?></td>        
-            <td><?= $row['ArrivalAirportCode'] ?></td>               
-            <td><?= $row['ScheduledDepartureTime'] ?></td>
-            <td><?= $row["ActualDepartureTime"] ?></td>        
-            <td><?= $row['ScheduledArrivalTime'] ?></td>               
-            <td><?= $row['ActualArrivalTime'] ?></td>
-        </tr>  
-    <?
-    }
-    ?>
-</table>
+            <th class="border bg-gray-200 border-green-700 p-4">Airline Code</th>
+            <th class="border bg-gray-200 border-green-700 p-4">Flight Number</th>
+            <th class="border bg-gray-200 border-green-700 p-4">Assigned Airplane ID</th>
+            <th class="border bg-gray-200 border-green-700 p-4">Departing Airport Code</th>
+            <th class="border bg-gray-200 border-green-700 p-4">Arrival Airport Code</th>        
+        </tr>
+
+        <?
+        while ($row = $flights->fetch()) {
+        ?>
+            <tr>
+                <td class="border border-green-700 px-4 py-2"><?= $row['AirlineCode'] ?></td>  
+                <td class="border border-green-700 px-4 py-2"><?= $row["FlightNumber"] ?></td>             
+                <td class="border border-green-700 px-4 py-2"><?= $row['AssignedAirplaneID'] ?></td>
+                <td class="border border-green-700 px-4 py-2"><?= $row["DepartingAirportCode"] ?></td>        
+                <td class="border border-green-700 px-4 py-2"><?= $row['ArrivalAirportCode'] ?></td>               
+            </tr>  
+        <?
+        }
+        ?>
+    </table>
+</div>
+
+<?php
+    require("../includes/footer.php");
+?>

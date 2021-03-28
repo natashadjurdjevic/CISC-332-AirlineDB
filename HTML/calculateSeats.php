@@ -3,7 +3,6 @@
     require("../database/functions.php");
     $flights = getAirplanesForFlight( $_POST["day"]);
     $avgSeats = calculateAvgSeats($flights);
-    var_dump($avgSeats);
 
 ?>
 
