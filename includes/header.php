@@ -10,7 +10,7 @@ error_reporting(E_ALL);
         <link href="../tailwind.css" rel="stylesheet">
     </head>
     <header class="flex justify-around bg-yellow-400 max-h-20">
-        <a class="text-center font-bold py-6 px-2 hover:bg-yellow-300" href='airline.php'>Home</a>
+        <a class="text-center font-bold py-6 px-2 hover:bg-yellow-300" href='../airline.php'>Home</a>
         <a class="text-center font-bold py-6 px-2 hover:bg-yellow-300" href='flightsOnTime.php'>Find Flights On Time</a>
         <a class="text-center font-bold py-6 px-2 hover:bg-yellow-300" href='flightByDay.php'>Find Flights by Day</a>
         <a class="text-center font-bold py-6 px-2 hover:bg-yellow-300" href='addNewFlight.php'>Add New Flight</a>
