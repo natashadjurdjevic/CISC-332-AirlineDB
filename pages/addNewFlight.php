@@ -34,12 +34,20 @@
                 <br>
             <? } ?>
 
+            <p class="font-bold pt-6 pb-2 text-xl">Select the New Departure Time</p>
+            <input class="p-4 pt-6 rounded bg-gray-100 shadow ml-4" type="time" name="scheduledDepartureTime" min="00:00" max="24:00" value="00:00" required>
+            <br>
+
             <p class="font-bold pt-3 pb-2 text-xl">Select Arrival Airport:</p>
             <? while ($row = $arrivalAirports->fetch()) { ?>
             <input class="ml-4" required type="radio" name="arrivalCode" value="<?= $row['AirportCode'] ?>">
                 <? echo $row["AirportCode"]." - ".$row["Name"]; ?>
                 <br>
             <? } ?>
+
+            <p class="font-bold pt-6 pb-2 text-xl">Select the New Arrival Time</p>
+            <input class="p-4 pt-6 rounded bg-gray-100 shadow ml-4" type="time" name="scheduledArrivalTime" min="00:00" max="24:00" value="00:00" required>
+            <br>
 
             <p class="font-bold pt-3 pb-2 text-xl">Select an available day: </p>
             <?
@@ -100,7 +108,7 @@
             httpRequest.send();
         });
     });
-
+    
 </script>
 
 

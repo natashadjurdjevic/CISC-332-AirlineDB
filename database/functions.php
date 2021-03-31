@@ -129,10 +129,12 @@
      * @param assignedAirplaneID - the selected airplane for the flight
      * @param departingAirportCode - departing location for flight
      * @param arrivalAirportCode - arrival location for flight
+     * @param scheduledDepartureTime - departure time for flight
+     * @param scheduledArrivalTime - arrival time for flight
      * 
      * @return flights - List of flights
      */
-    function addFlight($flightNumber, $airlineCode, $assignedAirplaneID, $departingAirportCode, $arrivalAirportCode) {
+    function addFlight($flightNumber, $airlineCode, $assignedAirplaneID, $departingAirportCode, $arrivalAirportCode, $scheduledDepartureTime, $scheduledArrivalTime) {
         global $connection;
         $insertFlight = "
             INSERT INTO 
@@ -141,14 +143,19 @@
                 AirlineCode, 
                 AssignedAirplaneID, 
                 DepartingAirportCode, 
-                ArrivalAirportCode
+                ArrivalAirportCode,
+                ScheduledDepartureTime,
+                ScheduledArrivalTime
             )
             VALUES (
                 $flightNumber, 
                 '$airlineCode', 
                 $assignedAirplaneID , 
                 '$departingAirportCode', 
-                '$arrivalAirportCode'
+                '$arrivalAirportCode',
+                '$scheduledDepartureTime',
+                '$scheduledArrivalTime'
+
             )
         ";
 
@@ -240,5 +247,23 @@
 
         $planes = $connection->query($query);
         return $planes;
+    }
+
+    function checkForExistingFlight() {
+        global $connection;
+        $query = 'SELECT FlightNumber FROM Flight';
+
+        $flights = $connection->query($query);
+
+        return $flights;
+
+        // if ($flightNumber in $flights) {
+        //     return True;
+        // }
+        // else {
+        //     return False;
+        // }
+
+
     }
 ?>
