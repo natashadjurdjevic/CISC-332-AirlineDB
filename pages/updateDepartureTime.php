@@ -1,18 +1,18 @@
-<?php  
-    require("../includes/header.php");
-    require("../database/functions.php");
-    $airlines = getAirlines();
+<?php
+require("../includes/header.php");
+require("../database/functions.php");
+$airlines = getAirlines();
 ?>
 
 <div>
     <h1 class="ml-16 mt-12 text-4xl font-bold text-yellow-400 hover:text-gray-200">Update Flight Departure Time</h1>
-    <form action="updateNewTime.php" method="post"  class="bg-gray-300 m-16 mt-4 py-5 pl-12 rounded shadow-lg">
+    <form action="updateNewTime.php" method="post" class="bg-gray-300 m-16 mt-4 py-5 pl-12 rounded shadow-lg">
         <p class="font-bold pb-2 pt-3 text-xl">Choose the preferred airline:</p>
-        <? while ($row = $airlines->fetch()) { ?>
+        <?php while ($row = $airlines->fetch()) { ?>
             <input class="airline-input pr-2 ml-4" type="radio" name="airlineCode" value="<?= $row['Code'] ?>" required>
-            <? echo $row["Code"]." - ".$row["Name"]; ?>
+            <?php echo $row["Code"] . " - " . $row["Name"]; ?>
             <br>
-        <? } ?>
+        <?php } ?>
 
         <div class="flight-list-section" style="display: none;">
             <p class="font-bold pt-6 pb-2 text-xl">Select a flight code to update the time</p>
@@ -28,19 +28,19 @@
 </div>
 
 <?php
-    require("../includes/footer.php");
+require("../includes/footer.php");
 ?>
 
 <script>
     const airlineSelectors = document.querySelectorAll('.airline-input');
-    
+
     airlineSelectors.forEach(function(selector) {
         selector.addEventListener('change', (event) => {
             // Handle request
             const airlineCode = event.target.value;
             console.log(airlineCode);
             httpRequest = new XMLHttpRequest();
-            httpRequest.onreadystatechange = function(){
+            httpRequest.onreadystatechange = function() {
                 // Response
                 const response = JSON.parse(httpRequest.responseText);
                 console.log(response);
@@ -53,7 +53,7 @@
                 const flightList = document.querySelector('.flight-list');
                 flightList.innerHTML = '';
 
-                response.forEach(function (flight) {
+                response.forEach(function(flight) {
                     const inputElement = document.createElement("input");
                     inputElement.type = "radio";
                     inputElement.name = "flightNumber";
@@ -74,5 +74,4 @@
             httpRequest.send();
         });
     });
-
 </script>
