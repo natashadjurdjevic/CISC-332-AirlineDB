@@ -104,7 +104,7 @@
                     airplaneList.appendChild(brElement);
                 });
             };
-            httpRequest.open('GET', 'http://localhost:8080/site/api/getAirplanesByID.php?airlineCode=' + airlineCode, true);
+            httpRequest.open('GET', '../api/getAirplanesByID.php?airlineCode=' + airlineCode, true);
             httpRequest.send();
         });
     });
